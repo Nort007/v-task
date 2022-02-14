@@ -7,7 +7,7 @@ import sqlite3
 
 
 class SysInfo(object):
-    """pass"""
+    """class"""
     def __init__(self, path_file, interval, convert_js: bool):
         self.path_file = path_file
         self.interval = interval
@@ -61,7 +61,8 @@ class SysInfo(object):
         data = self.get_process_info(pid)
         if data['status'] is False:
             if self.convert_js is True:
-                return {'status': False, 'js': self.convert_info_to_json()}
+                self.convert_info_to_json()
+                return {'status': False}
             else:
                 self.con.commit()
                 self.con.close()
